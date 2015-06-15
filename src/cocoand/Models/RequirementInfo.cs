@@ -7,8 +7,10 @@ using System.Runtime.Serialization;
 
 namespace Cocoand.Models
 {
+    using Utils;
+
     [DataContract]
-    class RequirementInfo
+    class RequirementInfo : Config
     {
         [DataMember(Name = "uri")]
         public String uri

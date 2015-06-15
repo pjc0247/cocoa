@@ -21,6 +21,10 @@ namespace Cocoand.Utils
             
             data = reader.Read<Dictionary<String, Object>>(json);
         }
+        public Config()
+        {
+            data = new Dictionary<String, Object>();
+        }
 
         public Dictionary<String, Object> data
         {

@@ -10,8 +10,18 @@ namespace Cocoand.Utils
 
     class Installer
     {
-        public static void Install(RequirementInfo info)
+        public static async void Install(RequirementInfo info)
         {
+            try
+            {
+                await Net.Download(info.uri, info.local);
+
+                OS.Execute(info.cmd, "");
+            }
+            catch (Exception e)
+            {
+                Logger.Output(e.ToString());
+            }
 
             return;
         }
