@@ -16,6 +16,12 @@ namespace Cocoand.Models
             get;
             private set;
         }
+        [DataMember(Name = "local")]
+        public String local
+        {
+            get;
+            private set;
+        }
         [DataMember (Name = "path")]
         public String path
         {
@@ -30,6 +36,12 @@ namespace Cocoand.Models
         }
         [DataMember (Name = "env_key")]
         public String envKey
+        {
+            get;
+            private set;
+        }
+        [DataMember(Name = "cmd")]
+        public String cmd
         {
             get;
             private set;
