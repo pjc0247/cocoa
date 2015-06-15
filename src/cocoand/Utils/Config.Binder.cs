@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace Cocoand.Utils
 {
-    partial class Config
+    public partial class Config
     {
         public class Binder
         {

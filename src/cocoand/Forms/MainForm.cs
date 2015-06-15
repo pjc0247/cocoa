@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Cocoand
+namespace Cocoand.Forms
 {
     using Utils;
 
@@ -19,7 +19,7 @@ namespace Cocoand
             InitializeComponent();
         }
 
-        private async void MainForm_Load(object sender, EventArgs e)
+        private void MainForm_Load(object sender, EventArgs e)
         {
             Logger.logOutput = (String msg) =>
             {
@@ -29,19 +29,17 @@ namespace Cocoand
             {
                 listBox1.Items[idx] = msg;
             };
+        }
 
-            Logger.Output("1", "asdf");
-            Logger.Update("1", "qwer\r\nqwerewqtwtwer");
-            Logger.Output("2", "asdfasdfaf\r\nwqerqwrwx");
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
 
-            //await Net.Download("http://dl.google.com/android/android-sdk_r24.3.2-windows.zip", "b.html");
-            var urls = Config.Open("urls.json");
-            var reqs = Models.Requirements.Open("cocoand.json");
+        }
 
-            var template = "python helllo {python} DAT";
-            urls.binder.Bind(template);
-            Logger.Output(template);
-            
+        private void configureSetup_Click(object sender, EventArgs e)
+        {
+            var form = new ConfigureForm();
+            form.ShowDialog();
         }
     }
 }

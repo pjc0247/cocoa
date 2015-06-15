@@ -9,7 +9,7 @@ using JsonFx.Serialization.Resolvers;
 namespace Cocoand.Models
 {
     [DataContract]
-    class Requirements
+    public class Requirements
     {
         public static Requirements Open(String path)
         {
@@ -19,12 +19,12 @@ namespace Cocoand.Models
             var json = File.ReadAllText(path);
 
             requirements.items =
-                reader.Read<Dictionary<String, RequirementInfo>>(json);
+                reader.Read<List<RequirementInfo>>(json);
 
             return requirements;
         }
 
-        public Dictionary<String,RequirementInfo> items
+        public List<RequirementInfo> items
         {
             get;
             private set;

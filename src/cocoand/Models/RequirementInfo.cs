@@ -10,8 +10,15 @@ namespace Cocoand.Models
     using Utils;
 
     [DataContract]
-    class RequirementInfo : Config
+    public class RequirementInfo : Config
     {
+        [DataMember(Name = "name")]
+        public String name
+        {
+            get;
+            private set;
+        }
+
         [DataMember(Name = "uri")]
         public String uri
         {
@@ -47,6 +54,22 @@ namespace Cocoand.Models
         {
             get;
             private set;
+        }
+
+        public Object this[String key]
+        {
+            get
+            {
+                return GetType().GetProperty(key).GetValue(this);
+            }
+            set
+            {
+                GetType().GetProperty(key).SetValue(this, value);
+            }
+        }
+        public RequirementInfo()
+        {
+            this.data = this;
         }
     }
 }

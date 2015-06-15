@@ -6,6 +6,8 @@ using System.Windows.Forms;
 
 namespace Cocoand
 {
+    using Forms;
+
     static class Program
     {
         /// <summary>

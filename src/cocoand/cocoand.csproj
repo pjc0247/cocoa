@@ -33,7 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="JsonFx">
-      <HintPath>..\..\..\..\gsp\GSPUnityPlugin\Assets\Plugins\JsonFx.dll</HintPath>
+      <HintPath>..\libs\JsonFx.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -50,6 +50,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CocoaControls\ConfigureInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CocoaControls\ConfigureInfo.Designer.cs">
+      <DependentUpon>ConfigureInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ConfigureForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ConfigureForm.Designer.cs">
+      <DependentUpon>ConfigureForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -67,6 +79,12 @@
     <Compile Include="Utils\Net.cs" />
     <Compile Include="Utils\OS.cs" />
     <Compile Include="Utils\UnZip.cs" />
+    <EmbeddedResource Include="CocoaControls\ConfigureInfo.resx">
+      <DependentUpon>ConfigureInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ConfigureForm.resx">
+      <DependentUpon>ConfigureForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>

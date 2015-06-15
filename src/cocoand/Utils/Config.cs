@@ -5,7 +5,7 @@ using JsonFx.Json;
 
 namespace Cocoand.Utils
 {
-    partial class Config
+    public partial class Config
     {
         public static Config Open(String path)
         {
@@ -26,10 +26,22 @@ namespace Cocoand.Utils
             data = new Dictionary<String, Object>();
         }
 
-        public Dictionary<String, Object> data
+        public dynamic data
         {
             get;
-            private set;
+            protected set;
+        }
+
+        public Object this[String key]
+        {
+            get
+            {
+                return data[key];
+            }
+            set
+            {
+                data[key] = value;
+            }
         }
 
         private Binder _binder;
