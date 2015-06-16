@@ -16,47 +16,47 @@ namespace Cocoand.Models
         public String name
         {
             get;
-            private set;
+            protected set;
         }
 
         [DataMember(Name = "uri")]
         public String uri
         {
             get;
-            private set;
+            protected set;
         }
         [DataMember(Name = "local")]
         public String local
         {
             get;
-            private set;
+            protected set;
         }
         [DataMember (Name = "path")]
         public String path
         {
             get;
-            private set;
+            protected set;
         }
         [DataMember (Name = "optional_if")]
         public String optionalIf
         {
             get;
-            private set;
+            protected set;
         }
         [DataMember (Name = "env_key")]
         public String envKey
         {
             get;
-            private set;
+            protected set;
         }
         [DataMember(Name = "cmd")]
         public String cmd
         {
             get;
-            private set;
+            protected set;
         }
 
-        public Object this[String key]
+        public new Object this[String key]
         {
             get
             {

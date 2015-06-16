@@ -17,9 +17,13 @@ namespace Cocoand.Forms
 
     public partial class ConfigureForm : Form
     {
+        private List<ConfigureInfo> configureControls;
+
         public ConfigureForm()
         {
             InitializeComponent();
+
+            configureControls = new List<ConfigureInfo>();
         }
 
         private async void MainForm_Load(object sender, EventArgs e)
@@ -46,10 +50,12 @@ namespace Cocoand.Forms
                 var control = new ConfigureInfo();
                 control.Location = new Point(1, offset);
                 control.info = requirement;
-                this.configPanel.Controls.Add(control);
+                configPanel.Controls.Add(control);
 
                 width = control.Size.Width + control.Margin.Size.Width;
                 offset += control.Size.Height + margin;
+
+                configureControls.Add(control);
             }
             
             Logger.Output(ok.Size.Height.ToString());
@@ -68,7 +74,14 @@ namespace Cocoand.Forms
 
         private void ok_Click(object sender, EventArgs e)
         {
-            /* save changes to Shared~ */
+            foreach (var configureControl in configureControls)
+            {
+                var key = configureControl.info.name;
+
+                Shared.installations[key] =
+                    new InstallationInfo(configureControl.info);
+            }
+
             Close();
         }
     }

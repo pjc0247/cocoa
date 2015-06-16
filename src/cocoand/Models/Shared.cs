@@ -8,11 +8,11 @@ namespace Cocoand.Models
 {
     class Shared
     {
-        public static List<InstallationInfo> installations;
+        public static Dictionary<String,InstallationInfo> installations;
 
         static Shared()
         {
-            installations = new List<InstallationInfo>();
+            installations = new Dictionary<String,InstallationInfo>();
         }
     }
 }

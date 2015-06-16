@@ -11,18 +11,29 @@ namespace Cocoand.Models
         public bool isSelected
         {
             get;
-            private set;
+            protected set;
         }
         public bool isRegistEnvVar
         {
             get;
-            private set;
+            protected set;
         }
 
         public InstallationInfo()
             : base()
         {
 
+        }
+        public InstallationInfo(
+            RequirementInfo info)
+            : base()
+        {
+            uri = info.uri;
+            local = info.local;
+            path = info.path;
+            optionalIf = info.optionalIf;
+            envKey = info.envKey;
+            cmd = info.cmd;
         }
     }
 }
