@@ -1,12 +1,23 @@
 [
   {
+  	"name" : "android_sdk",
+    "uri" : "http://dl.google.com/android/android-sdk_r24.3.2-windows.zip",
+    "local" : "android-sdk.zip",
+    "path" : "c:\\cocoa\\android_sdk\\android-sdk-windows",
+    "optional_if" : "",
+    "env_key" : "ANDROID_SDK_ROOT",
+    "cmd" : [
+      "unzip -o #(local) -d #(path)\\..\\",
+      "\"{path}\\SDK Manager.exe\" update sdk --filter platform-tool --no-ui"]
+  },
+  {
     "name" : "jdk",
     "uri" : "http://www.java.net/download/jdk7u80/archive/b05/binaries/jdk-7u80-ea-bin-b05-windows-i586-20_jan_2015.exe",
     "local" : "jdk-7u80-ea-bin-b05-windows-i586-20_jan_2015.exe",
     "path" : "c:\\cocoa\\jdk",
     "optional_if" : "",
     "env_key" : "JAVA_HOME",
-    "cmd" : "{local} /s INSTALLDIR={path} /L logs.txt"
+    "cmd" : ["#(local) /s INSTALLDIR=#(path) /L logs.txt"]
   },
   {
 	  "name" : "python",
@@ -15,34 +26,25 @@
     "path" : "c:\\cocoa\\python27",
     "optional_if" : "",
     "env_key" : "",
-    "cmd" : "msiexec.exe /i {local} /quiet /log logs.txt TARGETDIR={path}"
+    "cmd" : ["msiexec.exe /i #(local) /quiet /log logs.txt TARGETDIR=#(path)"]
   },
   {
 	  "name" : "ant",
     "uri" : "http://mirror.apache-kr.org//ant/binaries/apache-ant-1.9.5-bin.zip",
     "local" : "ant.zip",
-    "path" : "c:\\cocoa\\ant",
+    "path" : "c:\\cocoa\\ant\\apache-ant-1.9.5",
     "optional_if" : "",
     "env_key" : "ANT_ROOT",
-    "cmd" : "unzip -o {local} -d {path}\\..\\"
+    "cmd" : ["unzip -o #(local) -d #(path)\\..\\"]
   },
   {
 	  "name" : "ndk",
     "uri" : "http://dl.google.com/android/ndk/android-ndk-r10e-windows-x86.exe",
-    "local" : "ndk.exe",
-    "path" : "c:\\cocoa\\ndk",
+    "local" : "android-ndk-r10e.exe",
+    "path" : "c:\\cocoa\\ndk\\android-ndk-r10e",
     "optional_if" : "",
     "env_key" : "NDK_ROOT",
-    "cmd" : "{local} -y -o{path}\\..\\"
-  },
-  {
-	"name" : "android_sdk",
-    "uri" : "http://dl.google.com/android/android-sdk_r24.3.2-windows.zip",
-    "local" : "android-sdk.zip",
-    "path" : "c:\\cocoa\\android_sdk",
-    "optional_if" : "",
-    "env_key" : "ANDROID_SDK_ROOT",
-    "cmd" : "unzip -o {local} -d {path}\\..\\"
+    "cmd" : ["#(local) -y -o#(path)\\..\\"]
   },
   {
 	"name" : "cygwin",
@@ -51,6 +53,6 @@
     "path" : "c:\\cocoa\\cygwin",
     "optional_if" : "cocos_v2",
     "env_key" : "",
-    "cmd" : "{local} -q -s ftp://ftp.kaist.ac.kr/cygwin/ -p gcc,gcc-core,gcc-g++,python,automake -W -R {path}"
+    "cmd" : ["#(local) -q -s ftp://ftp.kaist.ac.kr/cygwin/ -p gcc,gcc-core,gcc-g++,python,automake -W -R #(path)"]
   }
 ]
