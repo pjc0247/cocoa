@@ -11,5 +11,5 @@ cocos2d-x android apk one click builder for windows
 문제 해결 방법
 ----
 
-[필요한 작업](docs/todo.md)
+[TODO](docs/todo.md)
 ----
