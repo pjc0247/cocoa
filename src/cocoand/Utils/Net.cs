@@ -40,7 +40,7 @@ namespace Cocoand.Utils
                 wc.dst, args.ProgressPercentage.ToString());
         }
         
-        public static Task Download(String uri, String dst){
+        public static Task DownloadAsync(String uri, String dst){
             var wc = new WrappedWebClient(uri, dst);
             wc.DownloadProgressChanged += OnDownloadProgressChanged;
             Logger.Output(

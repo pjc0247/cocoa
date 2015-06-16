@@ -15,7 +15,7 @@ namespace Cocoand.Utils
         {
             try
             {
-                var task = Net.Download(info.uri, info.local);
+                var task = Net.DownloadAsync(info.uri, info.local);
                 await task;
 
                 Logger.Output(task.Status.ToString());
