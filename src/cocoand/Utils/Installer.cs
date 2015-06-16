@@ -7,16 +7,32 @@ using System.Threading.Tasks;
 namespace Cocoand.Utils
 {
     using Models;
+    using CocoaControls;
 
     class Installer
     {
-        public static async void Install(RequirementInfo info)
+        public static async void Install(InstallationInfo info)
         {
             try
             {
+                var cmd = info.binder.Bind(info.cmd);
+                Logger.Output(cmd);
+
                 await Net.Download(info.uri, info.local);
 
-                OS.Execute(info.cmd, "");
+                OS.Execute(cmd, "");
+
+                if (info.isRegistEnvVar)
+                {
+                    /* TODO : Proops.Resource */
+                    if (!OS.AppendEnvPath(info.path))
+                        Logger.Output("failed to modify PATH");
+                }
+                if(info.envKey.Length > 0)
+                {
+                    if (!OS.SetEnvVar(info.envKey, info.path))
+                        Logger.Output("failed to modify env var");
+                }
             }
             catch (Exception e)
             {

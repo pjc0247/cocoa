@@ -7,10 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Linq;
 
 namespace Cocoand.Forms
 {
     using Utils;
+    using Models;
     using CocoaControls;
 
     public partial class ConfigureForm : Form
@@ -50,13 +52,13 @@ namespace Cocoand.Forms
                 offset += control.Size.Height + margin;
             }
             
-            Logger.Output(this.ok.Size.Height.ToString());
+            Logger.Output(ok.Size.Height.ToString());
 
-            this.configPanel.Size = new Size(width, this.configPanel.Size.Height + offset);
+            configPanel.Size = new Size(width, configPanel.Size.Height + offset);
 
-            this.ClientSize = new Size(width, this.configPanel.Size.Height + 20);
+            ClientSize = new Size(width, configPanel.Size.Height + 20);
 
-            Logger.Output(this.Size.Width.ToString());
+            Logger.Output(Size.Width.ToString());
         }
 
         private void headerLabel_Click(object sender, EventArgs e)
@@ -66,7 +68,8 @@ namespace Cocoand.Forms
 
         private void ok_Click(object sender, EventArgs e)
         {
-
+            /* save changes to Shared~ */
+            Close();
         }
     }
 }

@@ -10,20 +10,40 @@ namespace Cocoand.Utils
     {
         public static bool AppendEnvPath(String value)
         {
-            String key = "path";
-            String originalValue = 
-                Environment.GetEnvironmentVariable(key, EnvironmentVariableTarget.User);
+            try
+            {
+                String key = "path";
+                String originalValue =
+                    Environment.GetEnvironmentVariable(key, EnvironmentVariableTarget.User);
 
-            if(originalValue.IndexOf(value) != -1)
+                if (originalValue.IndexOf(value) != -1)
+                    return false;
+
+                return SetEnvVar(key, originalValue + ";" + value);
+            }
+            catch (Exception e)
+            {
+                Logger.Output(e.ToString());
                 return false;
-
-            Environment.SetEnvironmentVariable(
-		        key,
-		        originalValue + ";" + value,
-		        EnvironmentVariableTarget.User);
-
-            return true;
+            }
         }
+        public static bool SetEnvVar(String key, String value)
+        {
+            try
+            {
+                Environment.SetEnvironmentVariable(
+                    key, value,
+                    EnvironmentVariableTarget.User);
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                Logger.Output(e.ToString());
+                return false;
+            }
+        }
+
         public static bool Execute(String target, String args)
         {
             try{
