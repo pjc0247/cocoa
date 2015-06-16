@@ -45,7 +45,7 @@ namespace Cocoand.Utils
             wc.DownloadProgressChanged += OnDownloadProgressChanged;
             Logger.Output(
                 wc,
-                "다운로드 완료 : ");
+                "다운로드 중 ... : {0}", uri);
 
             return wc.DownloadFileTaskAsync(uri, dst);
         }

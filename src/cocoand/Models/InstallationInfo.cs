@@ -34,7 +34,7 @@ namespace Cocoand.Models
             path = info.path;
             optionalIf = info.optionalIf;
             envKey = info.envKey;
-            cmd = info.cmd;
+            cmds = info.cmds;
 
             isRegistEnvVar = true;
             isSelected = true;
