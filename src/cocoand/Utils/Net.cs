@@ -60,7 +60,7 @@ namespace Cocoand.Utils
             wc.DownloadProgressChanged += OnDownloadProgressChanged;
             Logger.Output(
                 wc,
-                "다운로드 중 ... : {0}", dst);
+                "다운로드 준비중 ... : {0}", dst);
 
             return wc.DownloadFileTaskAsync(uri, dst);
         }

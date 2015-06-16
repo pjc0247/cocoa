@@ -11,17 +11,26 @@ namespace Cocoand.Utils
     {
         public static bool AppendEnvPath(String value)
         {
+            if (value == null)
+                throw new ArgumentNullException("value");
+
             try
             {
                 String key = "path";
                 String originalValue =
                     Environment.GetEnvironmentVariable(key, EnvironmentVariableTarget.User);
 
-                if (originalValue.IndexOf(value) != -1)
-                    return false;
+                /* 없으면 새로 만든다 */
+                if (originalValue == null)
+                    originalValue = "";
+                else
+                {
+                    if (originalValue.IndexOf(value) != -1)
+                        return false;
 
-                if (originalValue.Last() != ';')
-                    originalValue += ";";
+                    if (originalValue.Last() != ';')
+                        originalValue += ";";
+                }
 
                 return SetEnvVar(key, originalValue + value);
             }
@@ -40,6 +49,11 @@ namespace Cocoand.Utils
         }
         public static bool SetEnvVar(String key, String value)
         {
+            if (key == null)
+                throw new ArgumentNullException("key");
+            if (value == null)
+                throw new ArgumentNullException("value");
+
             try
             {
                 Environment.SetEnvironmentVariable(
@@ -63,8 +77,13 @@ namespace Cocoand.Utils
         }
 
 
-        public static Task<bool> Execute(String target, String args)
+        public static Task<bool> ExecuteAsync(String target, String args)
         {
+            if (target == null)
+                throw new ArgumentNullException("target");
+            if (args == null)
+                throw new ArgumentNullException("args");
+
             return Task.Factory.StartNew(() =>
             {
                 try

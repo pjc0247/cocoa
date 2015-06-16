@@ -25,13 +25,16 @@ namespace Cocoand.Utils
 
                 Logger.Output(task.Status.ToString());
 
+                /* path 경로 생성 */
+                Directory.CreateDirectory(info.path);
+
                 //foreach (var cmd in info.cmds)
                 //{
                     var bound = info.binder.Bind(info.cmds);
                     var targ = bound.Split(new char[] { ' ' }, 2);
 
                     Logger.Output(bound);
-                    var result = await OS.Execute(targ[0], targ[1]);
+                    var result = await OS.ExecuteAsync(targ[0], targ[1]);
                 //}
 
                 if (info.isRegistEnvVar)
@@ -54,7 +57,7 @@ namespace Cocoand.Utils
             }
             finally
             {
-                File.Delete(info.local);   
+           //     File.Delete(info.local);   
             }
 
             return true;

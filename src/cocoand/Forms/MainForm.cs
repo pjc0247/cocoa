@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net;
+using System.Windows;
 
 namespace Cocoand.Forms
 {
@@ -39,11 +40,19 @@ namespace Cocoand.Forms
         {
             Logger.logOutput = (String msg) =>
             {
-                var idx = logs.Items.Add(msg);
-                var visibleItems = logs.ClientSize.Height / logs.ItemHeight;
-                logs.TopIndex = Math.Max(logs.Items.Count - visibleItems + 1, 0);
+                var task = new Func<int>(delegate()
+                {
+                    var idx = logs.Items.Add(msg);
+                    var visibleItems = logs.ClientSize.Height / logs.ItemHeight;
+                    logs.TopIndex = Math.Max(logs.Items.Count - visibleItems + 1, 0);
 
-                return idx;
+                    return idx;
+                });
+
+                if (this.logs.InvokeRequired)
+                    return (int)this.logs.Invoke(task);
+                else 
+                    return task();
             };
             Logger.logUpdate = (int idx, String msg) =>
             {

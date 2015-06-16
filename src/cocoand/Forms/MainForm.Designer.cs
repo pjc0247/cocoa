@@ -49,7 +49,7 @@
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(63, 68);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(107, 34);
             this.button1.TabIndex = 3;
@@ -70,6 +70,7 @@
             // 
             this.logs.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.logs.FormattingEnabled = true;
+            this.logs.HorizontalScrollbar = true;
             this.logs.ItemHeight = 18;
             this.logs.Location = new System.Drawing.Point(0, 292);
             this.logs.Name = "logs";
