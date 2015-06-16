@@ -83,7 +83,7 @@ namespace Cocoand.CocoaControls
             contentSize = await Net.QuerySize(info.uri);
             contentSizeLabel.Text =
                 String.Format(
-                    "size : {0}mb", contentSize.ToString());
+                    "size : {0}mb", (contentSize / (1024 * 1024)).ToString());
         }
 
         private void isSelected_CheckedChanged(object sender, EventArgs e)

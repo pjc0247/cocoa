@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.group = new System.Windows.Forms.GroupBox();
-            this.isSelectedBox = new System.Windows.Forms.CheckBox();
             this.infoPanel = new System.Windows.Forms.Panel();
+            this.contentSizeLabel = new System.Windows.Forms.Label();
+            this.isRegistEnvVarBox = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.browse = new System.Windows.Forms.Button();
             this.path = new System.Windows.Forms.TextBox();
-            this.isRegistEnvVarBox = new System.Windows.Forms.CheckBox();
-            this.contentSizeLabel = new System.Windows.Forms.Label();
+            this.isSelectedBox = new System.Windows.Forms.CheckBox();
             this.group.SuspendLayout();
             this.infoPanel.SuspendLayout();
             this.SuspendLayout();
@@ -52,17 +52,6 @@
             this.group.TabStop = false;
             this.group.Text = "KEY";
             // 
-            // isSelectedBox
-            // 
-            this.isSelectedBox.AutoSize = true;
-            this.isSelectedBox.Location = new System.Drawing.Point(19, 27);
-            this.isSelectedBox.Name = "isSelectedBox";
-            this.isSelectedBox.Size = new System.Drawing.Size(130, 22);
-            this.isSelectedBox.TabIndex = 10;
-            this.isSelectedBox.Text = "설치 활성화";
-            this.isSelectedBox.UseVisualStyleBackColor = true;
-            this.isSelectedBox.CheckedChanged += new System.EventHandler(this.isSelected_CheckedChanged);
-            // 
             // infoPanel
             // 
             this.infoPanel.Controls.Add(this.contentSizeLabel);
@@ -74,6 +63,26 @@
             this.infoPanel.Name = "infoPanel";
             this.infoPanel.Size = new System.Drawing.Size(609, 84);
             this.infoPanel.TabIndex = 11;
+            // 
+            // contentSizeLabel
+            // 
+            this.contentSizeLabel.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.contentSizeLabel.Location = new System.Drawing.Point(274, 61);
+            this.contentSizeLabel.Name = "contentSizeLabel";
+            this.contentSizeLabel.Size = new System.Drawing.Size(324, 23);
+            this.contentSizeLabel.TabIndex = 15;
+            this.contentSizeLabel.Text = "SIZE : 가져오는 중";
+            this.contentSizeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // isRegistEnvVarBox
+            // 
+            this.isRegistEnvVarBox.AutoSize = true;
+            this.isRegistEnvVarBox.Location = new System.Drawing.Point(13, 61);
+            this.isRegistEnvVarBox.Name = "isRegistEnvVarBox";
+            this.isRegistEnvVarBox.Size = new System.Drawing.Size(154, 22);
+            this.isRegistEnvVarBox.TabIndex = 13;
+            this.isRegistEnvVarBox.Text = "환경 변수 등록";
+            this.isRegistEnvVarBox.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
@@ -101,25 +110,16 @@
             this.path.Size = new System.Drawing.Size(452, 28);
             this.path.TabIndex = 10;
             // 
-            // isRegistEnvVarBox
+            // isSelectedBox
             // 
-            this.isRegistEnvVarBox.AutoSize = true;
-            this.isRegistEnvVarBox.Location = new System.Drawing.Point(13, 61);
-            this.isRegistEnvVarBox.Name = "isRegistEnvVarBox";
-            this.isRegistEnvVarBox.Size = new System.Drawing.Size(154, 22);
-            this.isRegistEnvVarBox.TabIndex = 13;
-            this.isRegistEnvVarBox.Text = "환경 변수 등록";
-            this.isRegistEnvVarBox.UseVisualStyleBackColor = true;
-            // 
-            // contentSizeLabel
-            // 
-            this.contentSizeLabel.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.contentSizeLabel.Location = new System.Drawing.Point(274, 61);
-            this.contentSizeLabel.Name = "contentSizeLabel";
-            this.contentSizeLabel.Size = new System.Drawing.Size(324, 23);
-            this.contentSizeLabel.TabIndex = 15;
-            this.contentSizeLabel.Text = "SIZE";
-            this.contentSizeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.isSelectedBox.AutoSize = true;
+            this.isSelectedBox.Location = new System.Drawing.Point(19, 27);
+            this.isSelectedBox.Name = "isSelectedBox";
+            this.isSelectedBox.Size = new System.Drawing.Size(130, 22);
+            this.isSelectedBox.TabIndex = 10;
+            this.isSelectedBox.Text = "설치 활성화";
+            this.isSelectedBox.UseVisualStyleBackColor = true;
+            this.isSelectedBox.CheckedChanged += new System.EventHandler(this.isSelected_CheckedChanged);
             // 
             // ConfigureInfo
             // 

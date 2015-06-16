@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
 using System.Threading.Tasks;
+using System.Net;
 
 namespace Cocoand.Utils
 {
@@ -11,42 +13,51 @@ namespace Cocoand.Utils
 
     class Installer
     {
-        public static async Task Install(InstallationInfo info)
+        public static async Task<bool> Install(
+            InstallationInfo info,
+            Action<DownloadProgressChangedEventArgs> downloadProgressCallback)
         {
             try
             {
-                var task = Net.DownloadAsync(info.uri, info.local);
+                var task = Net.DownloadAsync(
+                    info.uri, info.local, downloadProgressCallback);
                 await task;
 
                 Logger.Output(task.Status.ToString());
 
-                foreach (var cmd in info.cmds)
-                {
-                    var bound = info.binder.Bind(cmd);
+                //foreach (var cmd in info.cmds)
+                //{
+                    var bound = info.binder.Bind(info.cmds);
                     var targ = bound.Split(new char[] { ' ' }, 2);
 
                     Logger.Output(bound);
                     var result = await OS.Execute(targ[0], targ[1]);
-                }
+                //}
 
                 if (info.isRegistEnvVar)
                 {
                     /* TODO : Proops.Resource */
                     if (!await OS.AppendEnvPathAsync(info.path))
-                        Logger.Output("failed to modify PATH");
+                        throw new Exception("failed to modify PATH");
                 }
                 if(info.envKey.Length > 0)
                 {
                     if (!await OS.SetEnvVarAsync(info.envKey, info.path))
-                        Logger.Output("failed to modify env var");
+                        throw new Exception("failed to modify env var");
                 }
             }
             catch (Exception e)
             {
                 Logger.Output(e.ToString());
+
+                return false;
+            }
+            finally
+            {
+                File.Delete(info.local);   
             }
 
-            return;
+            return true;
         }
     }
 }

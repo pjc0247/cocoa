@@ -50,7 +50,7 @@ namespace Cocoand.Models
             protected set;
         }
         [DataMember(Name = "cmd")]
-        public List<String> cmds
+        public String cmds
         {
             get;
             protected set;

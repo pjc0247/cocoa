@@ -18,6 +18,11 @@ namespace Cocoand.Models
             get;
             protected set;
         }
+        public long size
+        {
+            get;
+            internal set;
+        }
 
         public InstallationInfo()
             : base()
@@ -36,6 +41,7 @@ namespace Cocoand.Models
             envKey = info.envKey;
             cmds = info.cmds;
 
+            size = 0;
             isRegistEnvVar = true;
             isSelected = true;
         }
