@@ -11,6 +11,7 @@ using System.Windows.Forms;
 namespace Cocoand.Forms
 {
     using Utils;
+    using Models;
 
     public partial class MainForm : Form
     {
@@ -29,6 +30,8 @@ namespace Cocoand.Forms
             {
                 listBox1.Items[idx] = msg;
             };
+
+            
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -40,6 +43,22 @@ namespace Cocoand.Forms
         {
             var form = new ConfigureForm();
             form.ShowDialog();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var reqs = Models.Requirements.Open("requirements.json");
+
+            var ii = new InstallationInfo(reqs.items[0]);
+
+
+            Shared.installations[ii.name] = ii;
+
+            foreach (var pair in Shared.installations)
+            {
+                Logger.Output(pair.Value.name);
+                Installer.Install(pair.Value);
+            }
         }
     }
 }

@@ -33,6 +33,7 @@ namespace Cocoand.Utils
         {
             WrappedWebClient wc = sender as WrappedWebClient;
 
+            /* TODO :  Controller레벨에서 로깅 */
             Logger.Update(
                 wc,
                 "downloading " + wc.dst + " : " + args.ProgressPercentage.ToString());

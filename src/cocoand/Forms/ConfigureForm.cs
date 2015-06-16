@@ -80,6 +80,8 @@ namespace Cocoand.Forms
 
                 Shared.installations[key] =
                     new InstallationInfo(configureControl.info);
+
+
             }
 
             Close();

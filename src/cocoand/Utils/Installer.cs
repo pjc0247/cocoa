@@ -18,9 +18,12 @@ namespace Cocoand.Utils
                 var cmd = info.binder.Bind(info.cmd);
                 Logger.Output(cmd);
 
-                await Net.Download(info.uri, info.local);
+                var task =  Net.Download(info.uri, info.local);
+                await task;
 
-                OS.Execute(cmd, "");
+                var targ = cmd.Split(new char[]{' '}, 2);
+
+                OS.Execute(targ[0], targ[1]);
 
                 if (info.isRegistEnvVar)
                 {

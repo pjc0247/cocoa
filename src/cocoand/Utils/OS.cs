@@ -19,7 +19,10 @@ namespace Cocoand.Utils
                 if (originalValue.IndexOf(value) != -1)
                     return false;
 
-                return SetEnvVar(key, originalValue + ";" + value);
+                if (originalValue.Last() != ';')
+                    originalValue += ";";
+
+                return SetEnvVar(key, originalValue + value);
             }
             catch (Exception e)
             {
@@ -49,6 +52,8 @@ namespace Cocoand.Utils
             try{
 		        var process = new Process();
 
+                Logger.Output(target);
+
                 process.StartInfo.FileName = target;
                 process.StartInfo.Arguments = args;
                 process.StartInfo.UseShellExecute = false;
@@ -62,6 +67,13 @@ namespace Cocoand.Utils
 			        process.StandardOutput.ReadToEnd();
 		        var stderr = 
 			        process.StandardOutput.ReadToEnd();
+
+                Logger.Output(stdout);
+                Logger.Output(stderr);
+                Logger.Output(process.ExitCode.ToString());
+
+                if (process.ExitCode != 0)
+                    return false;
 
 		        //Console::WriteLine(stdout_);
 		        //Console::WriteLine(stderr_);

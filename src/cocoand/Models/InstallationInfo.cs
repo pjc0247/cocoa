@@ -29,11 +29,15 @@ namespace Cocoand.Models
             : base()
         {
             uri = info.uri;
+            name = info.name;
             local = info.local;
             path = info.path;
             optionalIf = info.optionalIf;
             envKey = info.envKey;
             cmd = info.cmd;
+
+            isRegistEnvVar = true;
+            isSelected = true;
         }
     }
 }
