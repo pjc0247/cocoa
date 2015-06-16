@@ -31,6 +31,13 @@ namespace Cocoand.Utils
                 return false;
             }
         }
+        public static Task<bool> AppendEnvPathAsync(String value)
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                return AppendEnvPath(value);
+            });
+        }
         public static bool SetEnvVar(String key, String value)
         {
             try
@@ -47,6 +54,14 @@ namespace Cocoand.Utils
                 return false;
             }
         }
+        public static Task<bool> SetEnvVarAsync(String key, String value)
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                return SetEnvVar(key, value);
+            });
+        }
+
 
         public static Task<bool> Execute(String target, String args)
         {
@@ -83,10 +98,6 @@ namespace Cocoand.Utils
 
                     if (process.ExitCode != 0)
                         return false;
-
-                    //Console::WriteLine(stdout_);
-                    //Console::WriteLine(stderr_);
-                    //Console::WriteLine(process->ExitCode);
                 }
                 catch (Exception e)
                 {

@@ -26,7 +26,7 @@ namespace Cocoand.Forms
             configureControls = new List<ConfigureInfo>();
         }
 
-        private async void MainForm_Load(object sender, EventArgs e)
+        private void MainForm_Load(object sender, EventArgs e)
         {
             Logger.Output("1", "asdf");
             Logger.Update("1", "qwer\r\nqwerewqtwtwer");

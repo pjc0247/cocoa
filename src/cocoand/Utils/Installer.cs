@@ -30,12 +30,12 @@ namespace Cocoand.Utils
                 if (info.isRegistEnvVar)
                 {
                     /* TODO : Proops.Resource */
-                    if (!OS.AppendEnvPath(info.path))
+                    if (!await OS.AppendEnvPathAsync(info.path))
                         Logger.Output("failed to modify PATH");
                 }
                 if(info.envKey.Length > 0)
                 {
-                    if (!OS.SetEnvVar(info.envKey, info.path))
+                    if (!await OS.SetEnvVarAsync(info.envKey, info.path))
                         Logger.Output("failed to modify env var");
                 }
             }
