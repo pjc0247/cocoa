@@ -36,7 +36,8 @@ namespace Cocoand.Utils
             /* TODO :  Controller레벨에서 로깅 */
             Logger.Update(
                 wc,
-                "다운로드 중 " + wc.dst + " : " + args.ProgressPercentage.ToString());
+                "다운로드 중 ... : {0} ({1}%)",
+                wc.dst, args.ProgressPercentage.ToString());
         }
         
         public static Task Download(String uri, String dst){

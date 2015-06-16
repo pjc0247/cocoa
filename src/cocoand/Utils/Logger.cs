@@ -41,12 +41,12 @@ namespace Cocoand.Utils
         {
             Output(null, log);
         }
-        public static void Update(Object id, String log)
+        public static void Update(Object id, Object log, params Object[] args)
         {
             var idx = logs[id];
 
             if (logUpdate != null)
-                logUpdate(idx, log);
+                logUpdate(idx, String.Format(log.ToString(), args));
             else
                 Console.WriteLine(log);
         }
