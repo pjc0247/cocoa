@@ -11,19 +11,21 @@ namespace Cocoand.Utils
 
     class Installer
     {
-        public static async void Install(InstallationInfo info)
+        public static async Task Install(InstallationInfo info)
         {
             try
             {
                 var cmd = info.binder.Bind(info.cmd);
                 Logger.Output(cmd);
 
-                var task =  Net.Download(info.uri, info.local);
+                var task = Net.Download(info.uri, info.local);
                 await task;
+
+                Logger.Output(task.Status.ToString());
 
                 var targ = cmd.Split(new char[]{' '}, 2);
 
-                OS.Execute(targ[0], targ[1]);
+                var result = await OS.Execute(targ[0], targ[1]);
 
                 if (info.isRegistEnvVar)
                 {

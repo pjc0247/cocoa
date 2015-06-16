@@ -74,13 +74,13 @@ namespace Cocoand.CocoaControls
         {
 
         }
-        private void RefreshData()
+        private async void RefreshData()
         {
             group.Text = info.name;
             path.Text = info.path;
             isRegistEnvVarBox.Checked = info.envKey.Length != 0;
 
-            contentSize = Net.QuerySize(info.uri);
+            contentSize = await Net.QuerySize(info.uri);
             contentSizeLabel.Text =
                 String.Format(
                     "size : {0}mb", contentSize.ToString());

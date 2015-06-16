@@ -45,19 +45,23 @@ namespace Cocoand.Forms
             form.ShowDialog();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private async void button1_Click(object sender, EventArgs e)
         {
+            /*
             var reqs = Models.Requirements.Open("requirements.json");
 
             var ii = new InstallationInfo(reqs.items[0]);
 
 
             Shared.installations[ii.name] = ii;
+             * */
 
             foreach (var pair in Shared.installations)
             {
                 Logger.Output(pair.Value.name);
-                Installer.Install(pair.Value);
+                await Installer.Install(pair.Value);
+
+                Logger.Output("INSTALLLED " + pair.Key);
             }
         }
     }

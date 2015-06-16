@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace Cocoand.Utils
 {
@@ -47,44 +48,54 @@ namespace Cocoand.Utils
             }
         }
 
-        public static bool Execute(String target, String args)
+        public static Task<bool> Execute(String target, String args)
         {
-            try{
-		        var process = new Process();
+            return Task.Factory.StartNew(() =>
+            {
+                try
+                {
+                    var process = new Process();
 
-                Logger.Output(target);
+                    Logger.Output(target);
 
-                process.StartInfo.FileName = target;
-                process.StartInfo.Arguments = args;
-                process.StartInfo.UseShellExecute = false;
-                process.StartInfo.RedirectStandardOutput = true;
-                process.StartInfo.RedirectStandardError = true;
+                    process.StartInfo.FileName = target;
+                    process.StartInfo.Arguments = args;
+                    //process.StartInfo.UseShellExecute = false;
+                    //process.StartInfo.RedirectStandardOutput = true;
+                    //process.StartInfo.RedirectStandardError = true;
 
-                process.Start();
-                process.WaitForExit();
-		        
-		        var stdout = 
-			        process.StandardOutput.ReadToEnd();
-		        var stderr = 
-			        process.StandardOutput.ReadToEnd();
+                    process.Start();
+                    process.WaitForExit();
 
-                Logger.Output(stdout);
-                Logger.Output(stderr);
-                Logger.Output(process.ExitCode.ToString());
 
-                if (process.ExitCode != 0)
+
+                    /*
+                    var stdout = 
+                        process.StandardOutput.ReadToEnd();
+                    var stderr = 
+                        process.StandardOutput.ReadToEnd();
+
+                    Logger.Output(stdout);
+                    Logger.Output(stderr);
+                     * */
+
+                    Logger.Output(process.ExitCode.ToString());
+
+                    if (process.ExitCode != 0)
+                        return false;
+
+                    //Console::WriteLine(stdout_);
+                    //Console::WriteLine(stderr_);
+                    //Console::WriteLine(process->ExitCode);
+                }
+                catch (Exception e)
+                {
+                    Logger.Output(e.ToString());
                     return false;
+                }
 
-		        //Console::WriteLine(stdout_);
-		        //Console::WriteLine(stderr_);
-		        //Console::WriteLine(process->ExitCode);
-	        }
-	        catch(Exception e){
-                Logger.Output(e.ToString());
-		        return false;
-	        }
-
-            return true;
+                return true;
+            });
         }
     }
 }

@@ -48,11 +48,11 @@ namespace Cocoand.Utils
 
             return wc.DownloadFileTaskAsync(uri, dst);
         }
-        public static long QuerySize(String uri)
+        public static async Task<long> QuerySize(String uri)
         {
             HttpWebRequest req = (HttpWebRequest)WebRequest.Create(uri);
             req.Method = "HEAD";
-            HttpWebResponse resp = (HttpWebResponse)(req.GetResponse());
+            HttpWebResponse resp = (HttpWebResponse)(await req.GetResponseAsync());
             Logger.Output(resp.ContentLength.ToString());
             return resp.ContentLength;
         }
