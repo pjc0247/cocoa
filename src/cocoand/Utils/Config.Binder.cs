@@ -21,7 +21,7 @@ namespace Cocoand.Utils
 
             static Binder()
             {
-                escaper = new Regex("\\{([^\\{\\}]+)\\}");
+                escaper = new Regex("#\\(([^\\(\\)]+)\\)");
             }
             
             public Binder(Config target)

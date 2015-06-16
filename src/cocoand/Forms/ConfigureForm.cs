@@ -30,15 +30,15 @@ namespace Cocoand.Forms
         {
             Logger.Output("1", "asdf");
             Logger.Update("1", "qwer\r\nqwerewqtwtwer");
-            Logger.Output("2", "asdfasdfaf\r\nwqerqwrwx");
+            Logger.Output("2", "asdfasdfaf\r\nwqerqwrwx {0}", 1234);
 
             //await Net.Download("http://dl.google.com/android/android-sdk_r24.3.2-windows.zip", "b.html");
             //var urls = Config.Open("requirements.json");
             var reqs = Models.Requirements.Open("requirements.json");
 
-            var template = "python helllo {python} DAT";
+            var template = "python helllo #(python) DAT";
 
-            Logger.Output(reqs.items[0].binder.Bind("path {path}"));
+            Logger.Output(reqs.items[0].binder.Bind("path #(path)"));
 
             Logger.Output(template);
 

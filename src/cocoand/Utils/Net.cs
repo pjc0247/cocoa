@@ -36,7 +36,7 @@ namespace Cocoand.Utils
             /* TODO :  Controller레벨에서 로깅 */
             Logger.Update(
                 wc,
-                "downloading " + wc.dst + " : " + args.ProgressPercentage.ToString());
+                "다운로드 중 " + wc.dst + " : " + args.ProgressPercentage.ToString());
         }
         
         public static Task Download(String uri, String dst){
@@ -44,7 +44,7 @@ namespace Cocoand.Utils
             wc.DownloadProgressChanged += OnDownloadProgressChanged;
             Logger.Output(
                 wc,
-                "downloading : ");
+                "다운로드 완료 : ");
 
             return wc.DownloadFileTaskAsync(uri, dst);
         }

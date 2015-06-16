@@ -21,18 +21,18 @@ namespace Cocoand.Utils
 
         private static Dictionary<Object, int> logs = new Dictionary<Object, int>();
 
-        public static void Output(Object id, String log)
+        public static void Output(Object id, Object log, params Object[] args)
         {
             var idx = 0;
 
             if (logOutput != null)
             {
                 var delim = new string[] { Environment.NewLine };
-                foreach (var line in log.Split(delim, StringSplitOptions.RemoveEmptyEntries))
-                    idx = logOutput(line);
-            }
+                foreach (var line in log.ToString().Split(delim, StringSplitOptions.RemoveEmptyEntries))
+                    idx = logOutput(String.Format(line.ToString(), args));
+                }
             else
-                Console.WriteLine(log);
+                Console.WriteLine(log.ToString(), args);
 
             if(id != null)
                 logs[id] = idx;
