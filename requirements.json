@@ -1,14 +1,14 @@
 [
   {
   	"name" : "android_sdk",
-    "uri" : "http://dl.google.com/android/android-sdk_r24.3.2-windows.zip",
+    "uri" : "https://dl.google.com/android/android-sdk_r24.3.2-windows.zip",
     "local" : "android-sdk.zip",
     "path" : "c:\\cocoa\\android_sdk\\android-sdk-windows\\tools",
     "optional_if" : "",
     "env_key" : "ANDROID_SDK_ROOT",
     "cmd" : [
       "unzip -o #(local) -d #(path)\\..\\..\\",
-      "\"{path}\\android update sdk --all --filter build-tools-20.0.0,platform-tools,android-20 --no-ui"]
+      "echo y | #(path)\\android update sdk --all --filter build-tools-20.0.0,platform-tools,android-20 --no-ui"]
   },
   {
     "name" : "jdk",

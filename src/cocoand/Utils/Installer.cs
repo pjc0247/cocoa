@@ -23,28 +23,29 @@ namespace Cocoand.Utils
                     info.uri, info.local, downloadProgressCallback);
                 await task;
 
-                Logger.Output(task.Status.ToString());
-
                 /* path 경로 생성 */
                 Directory.CreateDirectory(info.path);
 
-                //foreach (var cmd in info.cmds)
-                //{
-                    var bound = info.binder.Bind(info.cmds);
+                foreach (var cmd in info.cmds)
+                {
+                    var bound = info.binder.Bind(cmd);
                     var targ = bound.Split(new char[] { ' ' }, 2);
 
-                    Logger.Output(bound);
                     var result = await OS.ExecuteAsync(targ[0], targ[1]);
-                //}
+                }
 
                 if (info.isRegistEnvVar)
                 {
+                    Logger.Output("PATH에 경로를 등록합니다.");
+
                     /* TODO : Proops.Resource */
                     if (!await OS.AppendEnvPathAsync(info.path))
                         throw new Exception("failed to modify PATH");
                 }
                 if(info.envKey.Length > 0)
                 {
+                    Logger.Output("환경 변수를 등록합니다.");
+
                     if (!await OS.SetEnvVarAsync(info.envKey, info.path))
                         throw new Exception("failed to modify env var");
                 }
@@ -57,7 +58,8 @@ namespace Cocoand.Utils
             }
             finally
             {
-           //     File.Delete(info.local);   
+                Logger.Output("설치 데이터 클린");
+                File.Delete(info.local);   
             }
 
             return true;

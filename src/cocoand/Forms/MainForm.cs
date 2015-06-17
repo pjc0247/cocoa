@@ -56,7 +56,11 @@ namespace Cocoand.Forms
             };
             Logger.logUpdate = (int idx, String msg) =>
             {
-                logs.Items[idx] = msg;
+
+                this.logs.Invoke(new Action(delegate()
+                {
+                    logs.Items[idx] = msg;
+                }));
             };
 
             logs.Visible = false;
@@ -113,6 +117,7 @@ namespace Cocoand.Forms
 
                 progressCommitted += progressCurrent;
             }
+            Logger.Output("작업 종료");
         }
 
         private void showLogs_Click(object sender, EventArgs e)

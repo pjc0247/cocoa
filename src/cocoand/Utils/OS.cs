@@ -90,8 +90,6 @@ namespace Cocoand.Utils
                 {
                     var process = new Process();
 
-                    Logger.Output(target);
-
                     process.StartInfo.FileName = target;
                     process.StartInfo.Arguments = args;
                     //process.StartInfo.UseShellExecute = false;
