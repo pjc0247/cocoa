@@ -3,12 +3,12 @@
   	"name" : "android_sdk",
     "uri" : "http://dl.google.com/android/android-sdk_r24.3.2-windows.zip",
     "local" : "android-sdk.zip",
-    "path" : "c:\\cocoa\\android_sdk\\android-sdk-windows",
+    "path" : "c:\\cocoa\\android_sdk\\android-sdk-windows\\tools",
     "optional_if" : "",
     "env_key" : "ANDROID_SDK_ROOT",
     "cmd" : [
-      "unzip -o #(local) -d #(path)\\..\\",
-      "\"{path}\\SDK Manager.exe\" update sdk --filter platform-tool --no-ui"]
+      "unzip -o #(local) -d #(path)\\..\\..\\",
+      "\"{path}\\android update sdk --all --filter build-tools-20.0.0,platform-tools,android-20 --no-ui"]
   },
   {
     "name" : "jdk",
@@ -32,10 +32,10 @@
 	  "name" : "ant",
     "uri" : "http://mirror.apache-kr.org//ant/binaries/apache-ant-1.9.5-bin.zip",
     "local" : "ant.zip",
-    "path" : "c:\\cocoa\\ant\\apache-ant-1.9.5",
+    "path" : "c:\\cocoa\\ant\\apache-ant-1.9.5\\bin",
     "optional_if" : "",
     "env_key" : "ANT_ROOT",
-    "cmd" : ["unzip -o #(local) -d #(path)\\..\\"]
+    "cmd" : ["unzip -o #(local) -d #(path)\\..\\..\\"]
   },
   {
 	  "name" : "ndk",
