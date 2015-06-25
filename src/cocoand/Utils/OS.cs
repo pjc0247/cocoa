@@ -9,7 +9,14 @@ namespace Cocoand.Utils
 {
     class OS
     {
-        public static bool AppendEnvPath(String value)
+        public enum Result
+        {
+            Success = 0,
+            PathAlreadyExists,
+            Failure
+        }
+
+        public static Result AppendEnvPath(String value)
         {
             if (value == null)
                 throw new ArgumentNullException("value");
@@ -26,7 +33,7 @@ namespace Cocoand.Utils
                 else
                 {
                     if (originalValue.IndexOf(value) != -1)
-                        return false;
+                        return Result.PathAlreadyExists;
 
                     if (originalValue.Last() != ';')
                         originalValue += ";";
@@ -37,17 +44,17 @@ namespace Cocoand.Utils
             catch (Exception e)
             {
                 Logger.Output(e.ToString());
-                return false;
+                return Result.Success;
             }
         }
-        public static Task<bool> AppendEnvPathAsync(String value)
+        public static Task<Result> AppendEnvPathAsync(String value)
         {
             return Task.Factory.StartNew(() =>
             {
                 return AppendEnvPath(value);
             });
         }
-        public static bool SetEnvVar(String key, String value)
+        public static Result SetEnvVar(String key, String value)
         {
             if (key == null)
                 throw new ArgumentNullException("key");
@@ -60,12 +67,12 @@ namespace Cocoand.Utils
                     key, value,
                     EnvironmentVariableTarget.User);
 
-                return true;
+                return Result.Success;
             }
             catch (Exception e)
             {
                 Logger.Output(e.ToString());
-                return false;
+                return Result.Failure;
             }
         }
         public static Task<bool> SetEnvVarAsync(String key, String value)
